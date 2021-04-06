@@ -52,11 +52,13 @@ __Applications__
 
 5. (Recommended) Data analysis - Image wise analysis
 
-6. (Recommended) Data analysis - Segmented Cell analysis
+6. (Recommended) Data analysis - Dynamics of the orgenelle
 
-7. (Recommended) Data analysis - Feature based analysis
+7. (Recommended) Data analysis - Segmented Cell analysis
 
-8. (Recommended) Data analysis - Clustering of features that have similar morphology
+8. (Recommended) Data analysis - Feature based analysis
+
+9. (Recommended) Data analysis - Clustering of features that have similar morphology
 
 
 ### Installation
@@ -65,7 +67,9 @@ __Applications__
 
 We have a conda encapsulation of this pipeline in www.anaconda.org/arpankbasak/erb_dynamo
 
-`conda install erb_dynamo -y`
+`conda create -n erb_dynamo r-base -y`
+
+`conda env update --name erb_dynamo --file ./erb_dynamo.yml `
 
 ### Step by step Instructions
 
