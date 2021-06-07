@@ -63,8 +63,6 @@ __Applications__
 
 ### Installation
 
-> Needs to be updated
-
 We have a conda encapsulation of this pipeline in www.anaconda.org/arpankbasak/erb_dynamo
 
 `conda create -n erb_dynamo r-base -y`
@@ -130,5 +128,8 @@ One can modify the script in the corresponding directories `./scripts/` for incl
 	- Number of z-stacks
 	- Time points taken (only for time-series eperiment)
 
+3. _What if the global parameters does not fit the my object of interest?_
+
+You can actuall make different list of parameters following the `default` parameter in the global parameter table and run the pipeline for each parameters to find the __optimum__ parameter for the object that you want to detect. In that case, you can run the scripts in parallel.
 
 ---
