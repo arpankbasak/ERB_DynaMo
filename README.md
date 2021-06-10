@@ -89,11 +89,11 @@ We have a conda encapsulation of this pipeline in www.anaconda.org/arpankbasak/e
 
 - of the dynamics of the features
 
-`./dynamics_statistcs.sh /path_to_feature_matrix_data/ /metadata/`
+`./dynamics_statistics.sh /path_to_feature_matrix_data/ /metadata/`
 
 - and, for morphology
 
-`./morphology_statistcs.sh /path_to_feature_matrix_data/ /metadata/`
+`./morphology_statistics.sh /path_to_feature_matrix_data/ /metadata/`
 
 > *"Its as simple as that !!"*
 
