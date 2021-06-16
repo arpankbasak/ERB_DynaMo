@@ -2,12 +2,12 @@
 
 ## ERB-DYNAMO (DYNamics And MOrphology)
 Analysis of confocal micrographs using unbiased approach.
-
 ---
 ## Summary
 
 ### Title
 Texture feature extraction from microscope images enables robust estimation of ER body morphology in Arabidopsis
+DOI: [10.21203/rs.3.rs-565848/v1](10.21203/rs.3.rs-565848/v1)
 
 ### Background
 Cellular components are controlled by genetic or physiological factors that define their shape and size. However, quantitively capturing the morphological characteristics of cellular organelles from the micrograph images is challenging, because the analysis deals with complexities of images that frequently lead inaccuracy in the estimation of the features. Here we show a unique quantitative method to overcome biases and inaccuracy of biological samples from confocal micrographs. 
