@@ -56,6 +56,7 @@ bmat <- as.matrix(imat_e[,grep(colnames(imat_e), pattern = "^b\\.")])
 
 loc_metadata <- ifelse(!is.na(args[1]), as.character(args[1]), "./data/sample_data.txt")
 k_clust <- ifelse(!is.na(args[2]), as.numeric(args[2]), 60)
+k_optim <- args[3]
 
 # Read metadata
 meta <- read.delim2(loc_metadata, sep = "\t", header = T, as.is = T)
@@ -147,11 +148,47 @@ row.names(features) <- df_features$FeatureID
   
 features <- apply(features, 2, function(x) (x - mean(x))/sd(x))
 
+message("Computing optimum K value..!!")
+n_centers=c(2, k_clust)
+aic_bic_list <- mclapply(n_centers[1]:n_centers[2], function(x){
+
+  set.seed(1)
+  km_obj <- kmeans(features, centers=x, iter.max = 100)
+  aic_bic <- k_optim(km_obj)
+
+  #hc_clusters <- cutree(clust_obj, k=x)
+ 
+  }
+
+)
+names(aic_bic_list) <- paste0("k_", as.character(n_centers[1]:n_centers[2]))
+aic_bic_df <- do.call(rbind, aic_bic_list)
+# kx <- last(which(aic_bic_df[,2]/sum(aic_bic_df[,2]) > 0.015))
+cut_off = 0.0095
+kx <- last(which(aic_bic_df[,1]/sum(aic_bic_df[,1]) > cut_off))
+aic_bic_df <- as.data.frame(aic_bic_df) %>%
+mutate(optim_AIC = AIC/sum(AIC), clusters = as.numeric(str_replace_all(row.names(.), "k_", "")))
+
+# Plot the K optimum
+ggplot(aic_bic_df, aes(x = clusters, y = optim_AIC)) +
+geom_point(size = 1, colour = "black") +
+geom_line(lty = "solid", lwd = 0.6) +
+geom_vline(xintercept = kx, lty = "dashed", lwd = 0.3, colour = "darkred")+
+geom_hline(yintercept = cut_off, lty = "dashed", lwd = 0.3, colour = "darkred")+
+theme_bw() +
+        labs(x = "Range of K based on number of genotypes",
+             y = "AIC/sum(AIC)") +
+       ggsave(filename = "./figures/optimised_kmeans.png", 
+                              width = 4, height = 3, units = "in", 
+              device = "png", dpi = 600, limitsize = FALSE, bg = "transparent")
+
+                  
 message("Computing Correlation between features..!!")
 d <- 1-cor(t(features))
 
 # Kmeans clustering for 5 x 5 clusters
 set.seed(1)
+k=iflelse(!is.na(k_optim), kx, k_clust)
 km <- kmeans(features, centers = k)
 # spc <- kernlab::specc(features, centers = k)
 hc <- hclust(as.dist(d), "average")
