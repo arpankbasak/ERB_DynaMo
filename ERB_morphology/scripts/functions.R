@@ -56,7 +56,7 @@ contrast_project <- function(i, fls, id) {
   }
 
 
-# Make image segmentatio
+# Make image segmentation
 segment_cells <- function(ind, fls, output) {
     
     #param <- "/klaster/work/abasak/git_repo_erb/ERB_ImageAnalysis/pilot_cotyledon/script/parameters.R"
@@ -288,4 +288,15 @@ segment_cells <- function(ind, fls, output) {
     }
 }
 
-# 
+# Determine K
+k_optim <- function(fit){
+    m <- ncol(fit$centers)
+    n <- length(fit$cluster)
+    k <- nrow(fit$centers)
+    D <- fit$tot.withinss
+    return(c(
+        AIC=(D + 2*m*k),
+        BIC=(D + log(n)*m*k)
+        )
+    )
+}
