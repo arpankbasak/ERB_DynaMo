@@ -131,6 +131,10 @@ One can modify the script in the corresponding directories `./scripts/` for incl
 
 3. _What if the global parameters does not fit the my object of interest?_
 
-You can actuall make different list of parameters following the `default` parameter in the global parameter table and run the pipeline for each parameters to find the __optimum__ parameter for the object that you want to detect. In that case, you can run the scripts in parallel.
+You can make different list of parameters following the `default` parameter in the global parameter table and run the pipeline for each parameters to find the __optimum__ parameter for the object that you want to detect. In that case, you can run the scripts in parallel.
+
+4. _How do I choose the k-value and optimise it for better selection of the segmented cells?_ 
+
+The scripts are optimised for using optimum k-value based on the `k` value provided by the user. It however recommened to have a prior assumption that atleast 5 or 10 clusters will be selected from each genotype. If your genotype or factor of interest is 3 then the `k` can be 15 or 30. It is recommended to use higher `k` and `k-cutoff` criteria ≤0.01%.
 
 ---
