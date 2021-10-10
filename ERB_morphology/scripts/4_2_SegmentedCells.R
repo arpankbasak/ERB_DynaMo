@@ -24,7 +24,9 @@ options(warn = 1, mc.cores = 8)
 # Measures not to fry R
 options(set.cores = 8)
 param <- "./script/parameters.R"
+funcs <- "./script/functions.R"
 source(param)
+source(funcs)
 
 figs <- paste0(figs, "cell_wise_analysis/")
 stats <- paste0(stats, "cell_wise_analysis/")
