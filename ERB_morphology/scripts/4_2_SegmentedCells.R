@@ -59,6 +59,7 @@ bmat <- as.matrix(imat_e[,grep(colnames(imat_e), pattern = "^b\\.")])
 loc_metadata <- ifelse(!is.na(args[1]), as.character(args[1]), "./data/sample_data.txt")
 k_clust <- ifelse(!is.na(args[2]), as.numeric(args[2]), 60)
 k_optim <- args[3]
+k_cutoff <- ifelse(!is.na(args[3])||!is.na(args[4]), as.numeric(args[4]) / 100, 0.0095)
 
 # Read metadata
 meta <- read.delim2(loc_metadata, sep = "\t", header = T, as.is = T)
@@ -166,7 +167,7 @@ aic_bic_list <- mclapply(n_centers[1]:n_centers[2], function(x){
 names(aic_bic_list) <- paste0("k_", as.character(n_centers[1]:n_centers[2]))
 aic_bic_df <- do.call(rbind, aic_bic_list)
 # kx <- last(which(aic_bic_df[,2]/sum(aic_bic_df[,2]) > 0.015))
-cut_off = 0.0095
+cut_off = k_cutoff
 kx <- last(which(aic_bic_df[,1]/sum(aic_bic_df[,1]) > cut_off))
 aic_bic_df <- as.data.frame(aic_bic_df) %>%
 mutate(optim_AIC = AIC/sum(AIC), clusters = as.numeric(str_replace_all(row.names(.), "k_", "")))
