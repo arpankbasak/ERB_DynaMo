@@ -139,8 +139,8 @@ The scripts are optimised for using optimum k-value based on the `k` value provi
 
 5. _How can I implement `czi` file directly into the pipeline?_
 
-The wrapper script in python environment `czi_2_tiff` can be used for decompression of `czi` images in tiff format and retains  the scale information of the images as image metadata. The following code can be used for this purpose.
+The wrapper script in python environment `czi_2_tif` can be used for decompression of `czi` images in tiff format and retains  the scale information of the images as image metadata. The following code can be used for this purpose.
 
-`python3 ./<location_of_the_scripts>/czi_2_tiff.py <path_of_the_czi_file>`
+`python3 ./<location_of_the_scripts>/czi_2_tif.py <path_of_the_czi_file>`
 
 ---
