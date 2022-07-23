@@ -137,4 +137,10 @@ You can make different list of parameters following the `default` parameter in t
 
 The scripts are optimised for using optimum k-value based on the `k` value provided by the user. It however recommened to have a prior assumption that atleast 5 or 10 clusters will be selected from each genotype. If your genotype or factor of interest is 3 then the `k` can be 15 or 30. It is recommended to use higher `k` and `k-cutoff` criteria ≤0.01%.
 
+5. _How can I implement `czi` file directly into the pipeline?_
+
+The wrapper script in python environment `czi_2_tiff` can be used for decompression of `czi` images in tiff format and retains  the scale information of the images as image metadata. The following code can be used for this purpose.
+
+`python3 ./<location_of_the_scripts>/czi_2_tiff.py <path_of_the_czi_file>`
+
 ---
